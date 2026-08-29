@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Triple AI Room</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111827;
+      color: white;
+    }
+
+    header {
+      padding: 18px;
+      text-align: center;
+      background: #1f2937;
+      border-bottom: 1px solid #374151;
+    }
+
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 24px;
+    }
+
+    header p {
+      margin: 0;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    .room {
+      max-width: 900px;
+      margin: auto;
+      padding: 15px;
+    }
+
+    .participant {
+      background: #1f2937;
+      border-radius: 15px;
+      margin-bottom: 14px;
+      padding: 15px;
+      border: 1px solid #374151;
+    }
+
+    .participant h2 {
+      margin: 0 0 10px;
+      font-size: 18px;
+    }
+
+    .message {
+      min-height: 60px;
+      padding: 12px;
+      background: #111827;
+      border-radius: 10px;
+      color: #d1d5db;
+      line-height: 1.6;
+    }
+
+    .you {
+      border-right: 4px solid #60a5fa;
+    }
+
+    .chatgpt {
+      border-right: 4px solid #34d399;
+    }
+
+    .gemini {
+      border-right: 4px solid #a78bfa;
+    }
+
+    .input-area {
+      position: sticky;
+      bottom: 0;
+      background: #111827;
+      padding: 12px 0;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 90px;
+      resize: vertical;
+      border: 1px solid #374151;
+      border-radius: 12px;
+      padding: 12px;
+      background: #1f2937;
+      color: white;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 14px;
+      border: 0;
+      border-radius: 12px;
+      background: #2563eb;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .status {
+      text-align: center;
+      margin-top: 10px;
+      color: #9ca3af;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🤖 Triple AI Room</h1>
+  <p>غرفة محادثة ثلاثية — أنت + ChatGPT + Gemini</p>
+</header>
+
+<div class="room">
+
+  <div class="participant you">
+    <h2>👤 أنت</h2>
+    <div id="youMessage" class="message">
+      لم ترسل رسالة بعد.
+    </div>
+  </div>
+
+  <div class="participant chatgpt">
+    <h2>🤖 ChatGPT</h2>
+    <div id="chatgptMessage" class="message">
+      في انتظار رسالتك...
+    </div>
+  </div>
+
+  <div class="participant gemini">
+    <h2>✨ Gemini</h2>
+    <div id="geminiMessage" class="message">
+      في انتظار رسالتك...
+    </div>
+  </div>
+
+  <div class="input-area">
+
+    <textarea
+      id="messageInput"
+      placeholder="اكتب رسالتك هنا..."
+    ></textarea>
+
+    <button onclick="sendMessage()">
+      📤 إرسال إلى الغرفة
+    </button>
+
+    <div id="status" class="status">
+      الغرفة جاهزة — النسخة التجريبية الأولى
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+function sendMessage() {
+
+  const input =
+    document.getElementById("messageInput");
+
+  const message =
+    input.value.trim();
+
+  if (!message) {
+    return;
+  }
+
+  document.getElementById("youMessage")
+    .textContent = message;
+
+  document.getElementById("chatgptMessage")
+    .textContent =
+    "ChatGPT: في انتظار الربط...";
+
+  document.getElementById("geminiMessage")
+    .textContent =
+    "Gemini: في انتظار الربط...";
+
+  document.getElementById("status")
+    .textContent =
+    "تم إرسال الرسالة إلى الغرفة التجريبية.";
+
+  input.value = "";
+}
+
+</script>
+
+</body>
+</html>
